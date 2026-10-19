@@ -4,7 +4,23 @@ const axios = require('axios');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:4173',
+  'https://hotline-booking.vercel.app'
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
 app.use(express.json());
 
 const gizmo = axios.create({
