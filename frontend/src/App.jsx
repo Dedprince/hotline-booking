@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 
-const API = 'http://localhost:3000';
+const API = 'https://hotline-backend-na6u.onrender.com';
 
 const STATUS_LABEL = {
   AVAILABLE: 'Свободен',
